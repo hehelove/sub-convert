@@ -9,7 +9,10 @@ export class UrlService {
 
     async toSub(request: Request, env: Env, convertType: string): Promise<Response> {
         try {
-            const confuse = new Confuse(env);
+            const { searchParams } = new URL(request.url);
+            const selectedBackend = searchParams.get('backend'); // 获取前端传递的 backend
+            const backend = selectedBackend != null ? selectedBackend : undefined;
+            const confuse = new Confuse(env, backend); // 传入 backend
             await confuse.setSubUrls(request);
 
             const restore = new Restore(confuse);

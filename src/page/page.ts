@@ -288,22 +288,22 @@ export function showPage(request: Request, env: Env): Response {
                             });
 
                             this.#generateSubBtn.addEventListener('click', () => {
-                                const url = new URL(this.#model.backend + '/sub');
+                                const url = new URL(window.location.origin + '/sub');
                                 url.searchParams.set('target', this.#model.target);
                                 url.searchParams.set('url', this.#model.url);
                                 url.searchParams.set('insert', 'false');
                                 url.searchParams.set('config', this.#model.config);
-                                url.searchParams.set('list', false);
-                                url.searchParams.set('scv', false);
-                                url.searchParams.set('fdn', false);
+                                url.searchParams.set('list', 'false');
+                                url.searchParams.set('scv', 'false');
+                                url.searchParams.set('fdn', 'false');
                                 url.searchParams.set('protocol', Array.isArray(this.#model.protocol) ? JSON.stringify(this.#model.protocol) : this.#model.protocol);
                                 
-                                const advancedOptions = this.#getAdvancedOptions(this.#model);
 
+                                const advancedOptions = this.#getAdvancedOptions(this.#model);
                                 advancedOptions.forEach(option => {
                                     url.searchParams.set(option.label, option.value);
                                 });
-
+                                url.searchParams.set('backend', this.#model.backend); // 添加 backend 参数
                                 const subUrl = url.toString();
                                 this.#formSubscribe.value = subUrl;
                                 this.#model.subUrl = subUrl;

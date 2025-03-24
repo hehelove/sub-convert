@@ -18,9 +18,9 @@ export class Confuse {
     private singboxClient: SingboxClient = new SingboxClient();
     private v2rayClient: V2RayClient = new V2RayClient(this.vps);
 
-    constructor(env: Env) {
+    constructor(env: Env, backend: string | null) {
         this.chunkCount = Number(env.CHUNK_COUNT ?? DEFAULT_CONFIG.CHUNK_COUNT);
-        this.backend = env.BACKEND ?? DEFAULT_CONFIG.BACKEND;
+        this.backend = backend ?? env.BACKEND ?? DEFAULT_CONFIG.BACKEND;
         this.parser = null;
     }
 
@@ -39,9 +39,10 @@ export class Confuse {
 
         this.urls = urlGroups.map(urlGroup => {
             const confuseUrl = new URL(`${this.backend}/sub`);
-            const { searchParams } = new URL(request.url);
-            searchParams.set('url', urlGroup);
-            confuseUrl.search = searchParams.toString();
+            const params = new URlSearchParams(searchParams);
+            params.set('url', urlGroup);
+            params.delete('backend');
+            confuseUrl.search = params.toString();
             return confuseUrl.toString();
         });
     }

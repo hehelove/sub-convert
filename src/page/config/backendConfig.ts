@@ -7,8 +7,8 @@ export function getBackendConfig(request: Request, env: Env): { label: string; v
             return acc;
         },
         [
-            { label: origin, value: origin },
-            { label: '肥羊增强型后端【vless+hysteria】', value: 'https://api.v1.mk' },
+            { label: 'cmliussss', value: 'https://subapi.cmliussss.net' },
+            { label: '肥羊增强型后端【vless+hysteria】', value: 'https://url.v1.mk' },
             { label: '肥羊备用后端【vless+hysteria】', value: 'https://sub.d1.mk' },
             { label: '品云提供后端【实验性】', value: 'https://v.id9.cc' },
             { label: 'つつ-多地防失联【负载均衡+国内优化】', value: 'https://api.tsutsu.one' },
