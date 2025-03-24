@@ -1,6 +1,8 @@
 # sub-convert
 
 一个防止节点泄漏的订阅转换小工具
+对比原作者修改了前端选择界面的后端选择为混淆后端，需要的可自行编译哦
+
 
 ## ✨ 功能特点
 
@@ -122,9 +124,6 @@ CREATE TABLE IF NOT EXISTS short_url (
 
 <p><img src="./src/doc/screen/flow.svg" width="200px" height="auto" alt="工作原理" /></p>
 
-#### 💾 提示
-
-- `只有使用部署的worker服务，才有混淆的效果，使用其他后端转换服务没有混淆的效果`
 
 ## 🤝 贡献指南
 
